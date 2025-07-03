@@ -1,10 +1,15 @@
 from fastapi import FastAPI
-from app.routers.hello import router as hello_router
 
 app = FastAPI(
-    title="CD FastAPI Project",
-    description="Пример FastAPI приложения с авторазвёртыванием на Render",
-    version="1.0.0"
+    title="My FastAPI App",
+    description="Приложение с автоматическим развертыванием на Render",
+    version="1.0.0",
+    contact={
+        "name": "Мейірхан",
+        "email": "youremail@example.com"
+    }
 )
 
-app.include_router(hello_router)
+@app.get("/hello", tags=["Demo"], summary="Приветствие", description="Простой тестовый эндпоинт")
+async def hello():
+    return {"message": "Привет от FastAPI и Render!"}
